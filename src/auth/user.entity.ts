@@ -1,4 +1,4 @@
-import { Task } from './../../dist/tasks/task.entity';
+import { Task } from '../tasks/task.entity';
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany } from "typeorm";
 import * as bcrypt from 'bcrypt';
 
@@ -17,7 +17,7 @@ export class User extends BaseEntity {
     @Column()
     salt: string;
 
-    @OneToMany(type => Task, task => task.user, { eager: true })
+    @OneToMany(_ => Task, task => task.user, { eager: true })
     tasks: Task[];
 
     async validatePassword(password: string): Promise<boolean> {
